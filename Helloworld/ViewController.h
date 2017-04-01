@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UITextFieldDelegate>
 
-
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+- (IBAction)changeGreching:(id)sender;
+@property (weak, nonatomic) IBOutlet UIStackView *eventStackView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scroll;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (copy, nonatomic) NSString *userName;
 @end
 
