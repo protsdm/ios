@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8427DB521EA20947000CCCA6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8427DB511EA20947000CCCA6 /* Images.xcassets */; };
 		CE3E86C01E6A806D004E750C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3E86BF1E6A806D004E750C /* main.m */; };
 		CE3E86C31E6A806D004E750C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3E86C21E6A806D004E750C /* AppDelegate.m */; };
 		CE3E86C61E6A806D004E750C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3E86C51E6A806D004E750C /* ViewController.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8427DB511EA20947000CCCA6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CE3E86BB1E6A806D004E750C /* Helloworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Helloworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3E86BF1E6A806D004E750C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE3E86C11E6A806D004E750C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				CE3E86CF1E6A806D004E750C /* LaunchScreen.storyboard */,
 				CE3E86D21E6A806D004E750C /* Info.plist */,
 				CE3E86CA1E6A806D004E750C /* Helloworld.xcdatamodeld */,
+				8427DB511EA20947000CCCA6 /* Images.xcassets */,
 				CE3E86BE1E6A806D004E750C /* Supporting Files */,
 			);
 			path = Helloworld;
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE3E86D11E6A806D004E750C /* LaunchScreen.storyboard in Resources */,
+				8427DB521EA20947000CCCA6 /* Images.xcassets in Resources */,
 				CE3E86CE1E6A806D004E750C /* Assets.xcassets in Resources */,
 				CE3E86C91E6A806D004E750C /* Main.storyboard in Resources */,
 			);
@@ -276,6 +280,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Helloworld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.Helloworld;
@@ -288,6 +293,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Helloworld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.self.Helloworld;
@@ -315,6 +321,7 @@
 				CE3E86D71E6A806D004E750C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

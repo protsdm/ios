@@ -8,12 +8,28 @@
 
 #import "ViewController.h"
 
+#define titleY 0
+#define titleH 60
+#define datesY titleH+5
+#define datesH 20
+#define priceY datesY+datesH+5
+#define priceH datesH
+#define placeTitleY priceY+priceH+5
+#define placeTitleH datesH
+#define addrY placeTitleY+placeTitleH+5
+#define addrH datesH
+#define descriptionY addrY+addrH+5
+#define descriptionH 90
+#define totalH descriptionY+descriptionH+5
+
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 @synthesize userName = _userName;
+UIAlertView *theAlert;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -117,18 +133,23 @@
     UILabel* descLbl = [UILabel new];
     UILabel* priceLbl = [UILabel new];
     UILabel* adressLbl = [UILabel new];
-    UILabel* endDateLbl = [UILabel new];
+    //UILabel* endDateLbl = [UILabel new];
     UILabel* titleTxtLbl = [UILabel new];
     UILabel* startDateLbl = [UILabel new];
     UILabel* placeTitleLbl = [UILabel new];
     
     
-    UIStackView* view=[[UIStackView alloc] init];
+   // UIStackView* view=[[UIStackView alloc] init];
+    UIView* view=[UIView new];
+    view.layer.borderWidth = 1;
+    view.layer.cornerRadius = 5;
+    view.layer.borderColor=[UIColor blackColor].CGColor;
     
-    view.backgroundColor = [UIColor lightGrayColor];
-    view.axis = UILayoutConstraintAxisVertical;
+    
+    view.backgroundColor = [UIColor whiteColor];
+   // view.axis = UILayoutConstraintAxisVertical;
     //view.alignment = UIStackViewAlignmentLeading;
-    //view.distribution = UIStackViewDistributionEqualSpacing;
+   // view.distribution = UIStackViewDistributionEqualSpacing;
     //view.spacing = 5;
     
     
@@ -142,35 +163,82 @@
     titleTxtLbl.font = font;
     titleTxtLbl.backgroundColor = [UIColor lightGrayColor];
     //[titleTxtLbl sizeToFit];
-    int titleHeight = titleTxtLbl.frame.size.height;
-    //[titleTxtLbl setFrame:CGRectMake(0, 0, self.scroll.bounds.size.width-10, titleHeight)];
+    //int titleHeight = titleTxtLbl.frame.size.height;
+    int itemsWidth=self.scroll.bounds.size.width-10;
+
+    [titleTxtLbl setFrame:CGRectMake(5, titleY, itemsWidth, titleH)];
     
-    [view addArrangedSubview:titleTxtLbl];
+    [view addSubview:titleTxtLbl];
     
     UILabel* datesLbl = [UILabel new];
     NSMutableString* dates = [NSMutableString new];
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     
+    
+    NSDateFormatter* writeFormatter = [NSDateFormatter new];
+    writeFormatter.dateFormat = @"dd MMM yyyy";
+    writeFormatter.locale = [NSLocale localeWithLocaleIdentifier: @"ru_RU"];
+    NSMutableString* datesString=[NSMutableString new];
+
     if (![startDate isEqual:[NSNull null]]) {
-        NSDate *yourDate = [dateFormatter dateFromString:startDate];
-        dateFormatter.dateFormat = @"dd MMM yyyy";
-        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier: @"ru_RU"];
-        startDateLbl.text = [dateFormatter stringFromDate:yourDate];
+        NSDate *sd = [dateFormatter dateFromString:startDate];
+        
+        [datesString appendString:[writeFormatter stringFromDate:sd]];
+       // [dates appendString:[dateFormatter stringFromDate:yourDate]];
+        
+     //   startDateLbl.text = [dateFormatter stringFromDate:yourDate];
+        
         //[startDateLbl sizeToFit];
-        int w = startDateLbl.frame.size.width;
-        int h = startDateLbl.frame.size.height;
+     //   int w = startDateLbl.frame.size.width;
+     //   int h = startDateLbl.frame.size.height;
         //[startDateLbl.widthAnchor constraintEqualToConstant:self.scroll.bounds.size.width-10].active=true;
 
         //NSLog(@"%@",[dateFormatter stringFromDate:yourDate]);
-        //[startDateLbl setFrame:CGRectMake(0, 0, self.scroll.bounds.size.width-10, h)];
+     //   [startDateLbl setFrame:CGRectMake(0, 50,itemsWidth/2-10, 20)];
         
-        [view addArrangedSubview:startDateLbl];
+     //   [view addArrangedSubview:startDateLbl];
         
     }
+    if (![endDate isEqual:[NSNull null]]) {
+        NSDate *ed = [dateFormatter dateFromString:endDate];
+        [datesString appendString:@"/"];
+        [datesString appendString:[writeFormatter stringFromDate:ed]];
+    }
+    startDateLbl.numberOfLines=1;
+    startDateLbl.text=datesString;
+    startDateLbl.numberOfLines=1;
+    [startDateLbl setFrame:CGRectMake(5, datesY,itemsWidth, datesH)];
+    [view addSubview:startDateLbl];
+   
+    
+    if(![price isEqual:[NSNull null]]){
+        priceLbl.numberOfLines=1;
+        priceLbl.text=price;
+        [priceLbl setFrame:CGRectMake(5,priceY,itemsWidth,priceH)];
+        [view addSubview:priceLbl];
+        
+    }
+    if(![placeTitle isEqual:[NSNull null]]){
+        placeTitleLbl.numberOfLines=1;
+        placeTitleLbl.text=placeTitle;
+        [placeTitleLbl setFrame:CGRectMake(5,placeTitleY,itemsWidth,placeTitleH)];
+        [view addSubview:placeTitleLbl];
+    }
+    if(![adress isEqual:[NSNull null]]){
+        adressLbl.numberOfLines=1;
+        adressLbl.text=adress;
+        [adressLbl setFrame:CGRectMake(5,addrY,itemsWidth, addrH)];
+        [view addSubview:adressLbl];
+    }
+    if(![desc isEqual:[NSNull null]]){
+        descLbl.numberOfLines=3;
+        descLbl.text=desc;
+        [descLbl setFrame:CGRectMake(5,descriptionY,itemsWidth,descriptionH)];
+        [view addSubview:descLbl];
+    }
     [view layoutIfNeeded];
-    
-    
+    //[view setFrame:CGRectMake(0,0,itemsWidth,100)];
     
     return view;
 }
@@ -204,7 +272,7 @@
            
             
             dispatch_async(dispatch_get_main_queue(), ^(void){
-                int summHeight = 0;
+           //     int summHeight = 0;
                 int i=0;
                 // code here
                 for(NSDictionary *event in events){
@@ -216,9 +284,11 @@
                      }*/
                     UIView* view = [self genView:dict];
                     
+                    [view setFrame:CGRectMake(view.frame.origin.x, i++*(totalH+10), self.scroll.bounds.size.width, totalH)];
+                    [self.scroll addSubview:view];
+
                     
-                    
-                    UIView* wrapper = [UIView new];
+                 /*   UIView* wrapper = [UIView new];
                     wrapper.layer.borderWidth = 1;
                     wrapper.layer.cornerRadius = 5;
                     //wrapper.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor blueColor]);
@@ -232,13 +302,12 @@
                     
                     
                     [view setFrame:CGRectMake(view.frame.origin.x, i*(view.bounds.size.height + 10), self.scroll.bounds.size.width, view.bounds.size.height)];
-                    [self.scroll addSubview:view];
                     i++;
-                    summHeight += view.bounds.size.height + 10;
-                    NSLog(@"%@", [dict valueForKey:@"price"]);
+                    summHeight += view.bounds.size.height + 10;*/
+                    //NSLog(@"%@", [dict valueForKey:@"price"]);
                 }
                 [self.scroll layoutIfNeeded];
-                self.scroll.contentSize = CGSizeMake(self.scroll.bounds.size.width, summHeight);
+                self.scroll.contentSize = CGSizeMake(self.scroll.bounds.size.width, /*summHeight*/(totalH+10)*events.count);
             });
             
             
@@ -246,7 +315,12 @@
             //NSLog(@"%@", jsonArray);
         }
         else {
-            NSLog(@"PIZDA RULjU");
+            theAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                               message:@"Network issues"
+                                                              delegate:self
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:@"Refresh",nil];
+            [theAlert show];
         }
     }];
     [dataTask resume];
@@ -277,6 +351,22 @@
     //[self.scroll layoutIfNeeded];
     //[self.eventStackView layoutIfNeeded];
     
+}
+#pragma Alert View
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    //NSString* login = [[alertView textFieldAtIndex:0] text];
+    //NSString* psw = [[alertView textFieldAtIndex:1] text];
+    //NSLog(@"Button with index %d clicked, Login:%@, Password:%@",buttonIndex,login,psw);
+    if (buttonIndex == 1) {
+        [self setup];
+    }
+}
+
+- (IBAction)onButtonClick:(id)sender {
+    [[self.scroll subviews]
+     makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self setup];
 }
 
 @end
